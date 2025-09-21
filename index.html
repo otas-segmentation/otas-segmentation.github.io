@@ -2,22 +2,246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Under Construction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation</title>
+  
+  <!-- SEO -->
+  <meta name="description" content="OTAS: a training-free open-vocabulary segmentation and semantic reconstruction method for outdoor robotics. Real-time, zero-shot, and robust across 2D and 3D datasets like ORFD and TartanAir.">
+  <meta name="keywords" content="OTAS, Open Vocabulary Segmentation, Semantic Mapping, Robotics, 3D Reconstruction, ORFD, TartanAir, ConceptGraphs, OpenFusion, Zero-shot, Foundation Models, Vision-Language Models">
+  <meta name="author" content="Simon Schwaiger, Stefan Thalhammer, Wilfried Wöber, Gerald Steinbauer-Wagner">
+  <link rel="canonical" href="https://otas-segmentation.github.io/">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation">
+  <meta property="og:description" content="OTAS aligns foundation model tokens across multiple views for open-vocabulary segmentation and semantic reconstruction in outdoor robotics.">
+  <meta property="og:image" content="https://otas-segmentation.github.io/img/otas_contrib_demo.gif">
+  <meta property="og:url" content="https://otas-segmentation.github.io">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation">
+  <meta name="twitter:description" content="Lightweight open-vocabulary segmentation and semantic reconstruction for outdoor robotics.">
+  <meta name="twitter:image" content="https://otas-segmentation.github.io/img/otas_experiments_demo.gif">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation",
+    "author": [
+      {"@type": "Person", "name": "Simon Schwaiger"},
+      {"@type": "Person", "name": "Stefan Thalhammer"},
+      {"@type": "Person", "name": "Wilfried Wöber"},
+      {"@type": "Person", "name": "Gerald Steinbauer-Wagner"}
+    ],
+    "datePublished": "2025-07-15",
+    "publisher": {"@type": "Organization", "name": "arXiv"},
+    "url": "https://arxiv.org/abs/2507.08851",
+    "image": "https://otas-segmentation.github.io/img/otas_contrib_demo.gif",
+    "keywords": ["open-vocabulary segmentation", "semantic mapping", "robotics", "3D reconstruction", "zero-shot segmentation", "ORFD", "TartanAir"]
+  }
+  </script>
+
+  <!-- Fonts & Styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      text-align: center;
-      font-family: sans-serif;
-      margin-top: 10%;
-    }
-    img {
-      width: 64px;
-      height: 64px;
-    }
+    body { margin:0; font-family:'Inter',sans-serif; line-height:1.6; color:#333; background:#fff;}
+    header { text-align:center; padding:4rem 1rem;}
+    header h1 { font-size:2.5rem; margin-bottom:0.5rem;}
+    header h3 { font-weight:normal; margin-top:0;}
+    .buttons { margin:2rem 0;}
+    .btn { display:inline-block; margin:0.5rem; padding:0.6rem 1.4rem; border-radius:30px; background:#333; color:#fff; text-decoration:none; font-weight:600; transition:background 0.2s;}
+    .btn:hover { background:#555;}
+    section { max-width:900px; margin:auto; padding:2rem 1rem;}
+    section h2 { text-align:center; margin-top:2rem;}
+    section img { border-radius:8px;}
+    .gallery { display:flex; gap:1%; justify-content:center; flex-wrap:wrap;}
+    .gallery img { width:32%; min-width:200px;}
+    footer { text-align:center; padding:2rem; font-size:0.9rem; color:#666;}
+    pre { background:#f0f0f0; padding:1rem; border-radius:5px; overflow-x:auto;}
+    .top-gifs { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem;}
+    .top-gifs img { max-width:500px; width:45%; border-radius:8px;}
+    .results-container { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-top:2rem;}
+    table.results { border-collapse:collapse; background:#fff; border:1px solid #ddd; font-size:0.95rem; min-width:280px;}
+    table.results th,table.results td { border:1px solid #ddd; padding:8px 12px; text-align:center;}
+    table.results th { background:#f5f5f5;}
+    .table-caption { text-align:center; font-weight:600; margin-bottom:0.5rem;}
+    .results-container { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-top:2rem;}
+    .results-container > div { flex: 1 1 400px; max-width: 450px;}
+    table.results { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #ddd; font-size: 0.95rem;}
+    .table-caption { text-align: center; font-weight: 600; margin-bottom: 0.5rem;}
   </style>
 </head>
 <body>
-  <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f477.png" alt="Builder">
-  <h1>Under Construction</h1>
+
+<header>
+  <h1>OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation</h1>
+  <h3>
+    Simon Schwaiger<sup>1,2</sup>, Stefan Thalhammer<sup>2</sup>, Wilfried Wöber<sup>2,3</sup>, Gerald Steinbauer-Wagner<sup>1</sup>
+  </h3>
+  <p>
+    <sup>1</sup> Graz University of Technology ·
+    <sup>2</sup> University of Applied Sciences Technikum Wien ·
+    <sup>3</sup> University of Natural Resources and Life Sciences Vienna
+  </p>
+  <div class="buttons">
+    <a class="btn" href="https://arxiv.org/pdf/2507.08851" target="_blank">📄 Paper</a>
+    <a class="btn" href="https://github.com/SimonSchwaiger/otas" target="_blank">💻 Code</a>
+    <a class="btn" href="https://arxiv.org/abs/2507.08851" target="_blank">🔗 arXiv</a>
+  </div>
+  <div class="top-gifs">
+    <img src="./img/otas_contrib_demo.gif" alt="OTAS capability demonstration on outdoor robotics scenes" style="border-radius:14px;" loading="lazy">
+    <img src="./img/otas_experiments_demo.gif" alt="OTAS experiments showcasing semantic mapping and segmentation" style="border-radius:14px;" loading="lazy">
+  </div>
+</header>
+
+<section>
+  <h2>Abstract</h2>
+  <p><i><center>
+    Understanding open-world semantics is critical for robotic planning and control, particularly in unstructured outdoor environments.
+    Existing vision-language mapping approaches typically rely on object-centric segmentation priors, which often fail outdoors due to semantic ambiguities and indistinct class boundaries.
+    We propose OTAS—an Open-vocabulary Token Alignment method for outdoor Segmentation.
+    OTAS addresses the limitations of open-vocabulary segmentation models by extracting semantic structure directly from the output tokens of pre-trained vision models.
+    By clustering semantically similar structures across single and multiple views and grounding them in language, OTAS reconstructs a geometrically consistent feature field that supports open-vocabulary segmentation queries.
+    Our method operates in a zero-shot manner, without scene-specific fine-tuning, and achieves real-time performance of up to ~17 fps.
+    On the Off-Road Freespace Detection dataset, OTAS yields a modest IoU improvement over fine-tuned and open-vocabulary 2D segmentation baselines.
+    In 3D segmentation on TartanAir, it achieves up to a 151% relative IoU improvement compared to existing open-vocabulary mapping methods.
+    Real-world reconstructions further demonstrate OTAS' applicability to robotic deployment. Code and a ROS node are available on <a href="https://github.com/SimonSchwaiger/otas">GitHub</a>.
+  </center></i></p>
+</section>
+
+<section id="method">
+  <h2>Method Overview</h2>
+  <p>
+    OTAS introduces a training-free token alignment that fuses self-supervised visual tokens with language embeddings,
+    regularising VLM features and improving non-object-class segmentation, without per-scene tuning.
+    It enables robust feature regularisation for non-object-centric outdoor environments.
+  </p>
+  <div style="text-align:center; margin:2rem 0;">
+    <img src="./img/feature_pooling_demo.png" alt="Feature pooling demonstration for token alignment in OTAS" style="width:90%; max-width:900px; border-radius:8px;" loading="lazy">
+  </div>
+  <p>
+    OTAS aligns encoder output tokens through self-supervised clustering and lightweight pooling steps:
+  </p>
+  <ul>
+    <li>a) OTAS encodes input views using frozen encoders.</li>
+    <li>b) Patch tokens of the visual encoder are reduced and clustered to obtain semantic masks.</li>
+    <li>c) Masks are pooled with vision-language patch tokens for natural language grounding.</li>
+    <li>d) A frozen mask refinement network optionally projects semantic similarity to prompts to pixel-level (2D).</li>
+    <li>e) Clustering and pooling are optionally conditioned on environment geometry through projection (3D).</li>
+  </ul>
+  <div style="text-align:center; margin:2rem 0;">
+    <img src="./img/OTAS_Paper-Method_Overview.png" alt="OTAS method pipeline overview with token encoding, clustering, pooling, refinement, and projection" style="width:90%; max-width:900px; border-radius:8px;" loading="lazy">
+  </div>
+</section>
+
+<section id="results">
+  <h2>Quantitative Zero-Shot Segmentation Results (IoU)</h2>
+  <div class="results-container">
+    <div>
+      <div class="table-caption">Multi-View (3D) - TartanAir (selected scenes)</div>
+      <table class="results">
+        <thead><tr><th>Method</th><th>mIoU (%)</th></tr></thead>
+        <tbody>
+          <tr><td>OpenFusion</td><td>20.16</td></tr>
+          <tr><td>ConceptGraphs</td><td>29.85</td></tr>
+          <tr><td><b>OTAS (Ours)</b></td><td><b>49.56</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="table-caption">Single-View (2D) - Offroad Freespace Detection Dataset</div>
+      <table class="results">
+        <thead><tr><th>Method</th><th>IoU (%)</th></tr></thead>
+        <tbody>
+          <tr><td>SEEM</td><td>51.31</td></tr>
+          <tr><td>Grounded SAM</td><td>90.49</td></tr>
+          <tr><td>Grounded SAM-2</td><td>93.32</td></tr>
+          <tr><td>OTAS Small (Ours)</td><td>91.72</td></tr>
+          <tr><td><b>OTAS Large</b> (Ours)</td><td><b>94.34</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="realworld">
+  <h2>Real-World Experiments</h2>
+  <p>
+    Real-world reconstructions on the 
+    <a href="https://robonav.sai.tugraz.at/data/" target="_blank" rel="noopener">RoboNav Dataset</a> 
+    demonstrate OTAS' applicability to real robotics data. 
+    From left to right: Example input image, geometric reconstruction, PCA over semantic reconstruction, 
+    and open-language segmentation over the feature field.
+  </p>
+  <div style="text-align:center; margin:2rem 0;">
+    <img src="./img/real-world-robonav-reconstruction.png" alt="OTAS real-world reconstruction results on RoboNav dataset showing input, geometry, PCA, and open-language segmentation" style="width:100%; max-width:900px; border-radius:8px; display:block; margin:auto;" loading="lazy">
+    <div style="display:flex; justify-content:space-between; max-width:900px; margin:0.5rem auto 0; font-size:0.9rem; color:#555; text-align:center;">
+      <div style="flex:1;">Input Image (1 of n)</div>
+      <div style="flex:1;">Geometric Reconstruction</div>
+      <div style="flex:1;">PCA over Semantics</div>
+      <div style="flex:1;">Open-Language Segmentation</div>
+    </div>
+  </div>
+</section>
+
+<section id="similarity">
+  <h2>Open-Language Similarity Assessment</h2>
+  <p>OTAS supports open-vocabulary similarity queries in 3D scenes, enabling retrieval and visualisation of semantic concepts such as terrain types. Contrary to existing methods, OTAS extracts dense language embeddings, even in cluttered and highly textured outdoor scenes.</p>
+  <div style="text-align:center; margin:2rem 0;">
+    <img src="./img/otas_tartan_similarity_demo.gif" alt="OTAS similarity query demo on TartanAir dataset" style="width:70%; max-width:900px; border-radius:14px;" loading="lazy">
+  </div>
+</section>
+
+<section>
+  <h2>How to use in your own projects</h2>
+  <p>
+    OTAS only requires python dependencies and pretrained encoder checkpoints. After installation with pip, inference can be performed with just a few lines of code.
+    We include an <i>11-line example</i> for reconstruction from phone photos of a hiking trail in the Alps. 
+    From left to right: Example input image, Geometric reconstruction, PCA over semantics, similarity to prompt <i>"wooden bridge"</i>. 
+    Check out our <a href="https://github.com/SimonSchwaiger/otas/blob/main/demo.ipynb">demo notebook</a> and <a href="https://github.com/SimonSchwaiger/otas">source code</a> for more details.
+  </p>
+  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:1%;">
+    <img src="./img/dataset_demo.png" alt="Input dataset photo for OTAS demo reconstruction" style="width:10%; min-width:120px; border-radius:8px; object-fit:cover;" loading="lazy">
+    <img src="./img/demo/otas_spatial_demo_colour.png" alt="OTAS geometric reconstruction result from hiking trail" style="width:27%; min-width:200px; border-radius:8px;" loading="lazy">
+    <img src="./img/demo/otas_spatial_demo_pca.png" alt="OTAS PCA semantic embedding visualisation from hiking trail" style="width:27%; min-width:200px; border-radius:8px;" loading="lazy">
+    <img src="./img/demo/otas_spatial_demo_similarity.png" alt="OTAS open-language similarity to 'wooden bridge' prompt" style="width:27%; min-width:200px; border-radius:8px;" loading="lazy">
+  </div>
+</section>
+
+<section>
+  <h2>BibTeX Citation</h2>
+  <p>If you use this work, please cite:</p>
+  <pre><code>@misc{Schwaiger2025OTAS,
+  title   = {OTAS: Open-vocabulary Token Alignment for Outdoor Segmentation. arXiv preprint arXiv:2507.08851},
+  author  = {Simon Schwaiger and Stefan Thalhammer and Wilfried Wöber and Gerald Steinbauer-Wagner},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2507.08851}
+}</code></pre>
+</section>
+
+<section>
+  <h2>Acknowledgements</h2>
+  <p>
+    We thank the authors of <a href="https://github.com/facebookresearch/dinov2">DINOv2</a>,
+    <a href="https://github.com/openai/CLIP">CLIP</a>,
+    <a href="https://github.com/facebookresearch/segment-anything-2">Segment Anything 2</a>,
+    <a href="https://feature-splatting.github.io/">Feature Splatting</a>,
+    <a href="https://github.com/facebookresearch/VGGT">VGGT</a>,
+    <a href="https://github.com/nerfstudio-project/nerfstudio">Nerfstudio</a>,
+    and <a href="https://github.com/NVlabs/RADIO">RADIO</a>.
+    <br><br>
+    Supported by the City of Vienna (MA23 – Economic Affairs, Labour and Statistics), project
+    <i>Stadt Wien Kompetenzteam für Drohnentechnik in der Fachhochschulausbildung</i> (MA23 project 35-02).
+  </p>
+</section>
+
+<footer>
+  <p>© 2025 Simon Schwaiger · OTAS — Built for the robotics community · Inspired by Nerfies template.</p>
+</footer>
+
 </body>
 </html>

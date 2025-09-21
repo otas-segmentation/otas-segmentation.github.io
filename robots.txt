@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://otas-segmentation.github.io/sitemap.xml
